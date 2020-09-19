@@ -1,0 +1,36 @@
+{
+  "name": "10-flow",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack --mode=development",
+    "flow": "flow",
+    "format": "eslint --fix index.js"
+  },
+  "keywords": [
+    "babel",
+    "eslint",
+    "flow",
+    "webpack"
+  ],
+  "author": "Cody Smith",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "latest",
+    "@babel/core": "latest",
+    "@babel/plugin-transform-flow-strip-types": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-flow": "latest",
+    "babel-loader": "latest",
+    "babel-eslint": "latest",
+    "babel-plugin-transform-flow-strip-types": "latest",
+    "eslint": "latest",
+    "eslint-loader": "latest",
+    "eslint-plugin-flowtype": "latest",
+    "eslint-plugin-flowtype-errors": "latest",
+    "flow-bin": "latest",
+    "oncody-eslint-config": "latest",
+    "path": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
+  }
+}
