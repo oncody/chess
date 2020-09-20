@@ -1,3 +1,10 @@
-type Color = 'White' | 'Black';
+const WHITE = 'White';
+const BLACK = 'Black';
 
-export default Color;
+type Color = WHITE | BLACK;
+
+export {
+    type Color as default,
+    WHITE,
+    BLACK
+};

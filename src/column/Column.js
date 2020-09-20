@@ -1,3 +1,5 @@
+import {getColumnByLetter, getColumnByIndex} from './Columns'
+
 class Column {
     letter: string;
     index: number;
@@ -15,12 +17,12 @@ class Column {
         return this.index;
     }
 
-    getPreviousColumn(column: Column) {
-        return getColumnByIndex(column.getIndex() - 1)
+    getPreviousColumn() {
+        return getColumnByIndex(this.getIndex() - 1)
     }
 
-    getNextColumn(column: Column) {
-        return getColumnByIndex(column.getIndex() + 1)
+    getNextColumn() {
+        return getColumnByIndex(this.getIndex() + 1)
     }
 }
 

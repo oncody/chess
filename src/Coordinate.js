@@ -1,5 +1,5 @@
 import type Column from "./column/Column";
-import type Row from "./Row";
+import type Row from "./row/Row";
 
 class Coordinate {
     column: Column;

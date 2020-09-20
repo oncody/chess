@@ -17,7 +17,7 @@ type ColumnIndex = COLUMN_1 |
     COLUMN_8;
 
 export {
-    ColumnIndex as default,
+    type ColumnIndex as default,
     COLUMN_1,
     COLUMN_2,
     COLUMN_3,

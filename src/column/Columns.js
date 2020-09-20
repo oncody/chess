@@ -33,11 +33,11 @@ const COLUMNS = [
     new Column(COLUMN_H, COLUMN_8)
 ];
 
-let getColumnByIndex = function(index: number) {
+let getColumnByIndex = function(index: ColumnIndex) {
     return COLUMNS.find(column => column.getIndex() === index);
 }
 
-let getColumnByLetter = function(letter: string) {
+let getColumnByLetter = function(letter: ColumnLetter) {
     return COLUMNS.find(column => column.getLetter() === letter);
 }
 

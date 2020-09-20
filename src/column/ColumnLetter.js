@@ -17,7 +17,7 @@ type ColumnLetter = COLUMN_A |
     COLUMN_H;
 
 export {
-    ColumnLetter as default,
+    type ColumnLetter as default,
     COLUMN_A,
     COLUMN_B,
     COLUMN_C,
