@@ -26,6 +26,13 @@ class Coordinate {
         return Math.abs(this.getColumn().getIndex() - coordinate.getColumn().getIndex());
     }
 
+    isKnightMoveAway(coordinate: Coordinate): boolean {
+// todo: fix this
+        let adjacentColumn = this.getColumnDifference(coordinate) < 2;
+        let adjacentRow = this.getRowDifference(coordinate) < 2
+        return adjacentColumn && adjacentRow;
+    }
+
     isAdjacent(coordinate: Coordinate): boolean {
         let adjacentColumn = this.getColumnDifference(coordinate) < 2;
         let adjacentRow = this.getRowDifference(coordinate) < 2
