@@ -1,4 +1,4 @@
-import type Piece from "./Piece";
+import type Piece from './Piece';
 
 class Pawn implements Piece {
     isLegalMove(row, column) {

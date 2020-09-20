@@ -1,6 +1,6 @@
-import type Color from "./Color";
-import Coordinate from "./Coordinate";
-import type Piece from "./piece/Piece";
+import type Color from './Color';
+import Coordinate from './Coordinate';
+import type Piece from './piece/Piece';
 
 class Square {
     color: Color;
@@ -12,15 +12,25 @@ class Square {
         this.coordinate = coordinate;
     }
 
-    addPiece(piece: Piece) {
+    getColor(): Color {
+        return this.color;
+    }
+
+    getCoordinate(): Coordinate {
+        return this.coordinate;
+    }
+
+    getPiece(): Piece {
+        return this.piece;
+    }
+
+    addPiece(piece: Piece): void {
         this.piece = piece
     }
 
-    removePiece(piece: Piece) {
+    removePiece(piece: Piece): void {
         this.piece = null;
     }
-
-
 }
 
 export default Square;

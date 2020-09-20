@@ -17,11 +17,11 @@ class Column {
         return this.index;
     }
 
-    getPreviousColumn() {
+    getPreviousColumn(): Column {
         return getColumnByIndex(this.getIndex() - 1)
     }
 
-    getNextColumn() {
+    getNextColumn(): Column {
         return getColumnByIndex(this.getIndex() + 1)
     }
 }

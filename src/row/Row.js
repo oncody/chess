@@ -1,14 +1,23 @@
-import type RowIndex, {
-    ROW_1,
-    ROW_2,
-    ROW_3,
-    ROW_4,
-    ROW_5,
-    ROW_6,
-    ROW_7,
-    ROW_8
-} from './RowIndex';
+import {getRowByIndex} from './Rows'
 
-type Row = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+class Row {
+    index: number;
+
+    constructor(index: number) {
+        this.index = index;
+    }
+
+    getIndex(): number {
+        return this.index;
+    }
+
+    getPreviousRow(): Row {
+        return getRowByIndex(this.getIndex() - 1)
+    }
+
+    getNextRow(): Row {
+        return getRowByIndex(this.getIndex() + 1)
+    }
+}
 
 export default Row;
