@@ -18,25 +18,19 @@ class Coordinate {
         return this.row;
     }
 
-    getColumnDifference(coordinate: Coordinate): number {
-        return Math.abs(this.getColumn().getIndex() - coordinate.getColumn().getIndex());
-    }
-
-    getRowDifference(coordinate: Coordinate): number {
-        return Math.abs(this.getColumn().getIndex() - coordinate.getColumn().getIndex());
-    }
-
     isKnightMoveAway(coordinate: Coordinate): boolean {
-// todo: fix this
-        let adjacentColumn = this.getColumnDifference(coordinate) < 2;
-        let adjacentRow = this.getRowDifference(coordinate) < 2
-        return adjacentColumn && adjacentRow;
+        let columnDistance = this.getColumn().distance(coordinate.getColumn());
+        let rowDistance = this.getRow().distance(coordinate.getRow());
+
+        // Both need to be less than 3 distance away
+        // The row distance + column distance need to equal 3
+        return columnDistance < 3 && rowDistance < 3 && rowDistance + columnDistance === 3;
     }
 
     isAdjacent(coordinate: Coordinate): boolean {
-        let adjacentColumn = this.getColumnDifference(coordinate) < 2;
-        let adjacentRow = this.getRowDifference(coordinate) < 2
-        return adjacentColumn && adjacentRow;
+        let isColumnAdjacent = this.getColumn().distance(coordinate.getColumn()) < 2;
+        let isRowAdjacent = this.getRow().distance(coordinate.getRow()) < 2;
+        return isColumnAdjacent && isRowAdjacent;
     }
 
     isOrthogonal(coordinate: Coordinate): boolean {
@@ -46,7 +40,9 @@ class Coordinate {
     }
 
     isDiagnol(coordinate: Coordinate): boolean {
-        return this.getColumnDifference(coordinate) === this.getRowDifference(coordinate);
+        let columnDistance = this.getColumn().distance(coordinate.getColumn());
+        let rowDistance = this.getRow().distance(coordinate.getRow());
+        return columnDistance === rowDistance;
     }
 }
 

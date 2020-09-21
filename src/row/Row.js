@@ -11,12 +11,16 @@ class Row {
         return this.index;
     }
 
-    getPreviousRow(): Row {
+    previous(): Row {
         return getRowByIndex(this.getIndex() - 1)
     }
 
-    getNextRow(): Row {
+    next(): Row {
         return getRowByIndex(this.getIndex() + 1)
+    }
+
+    distance(row: Row): number {
+        return Math.abs(this.getIndex() - row.getIndex());
     }
 }
 

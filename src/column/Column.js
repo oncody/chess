@@ -17,12 +17,16 @@ class Column {
         return this.index;
     }
 
-    getPreviousColumn(): Column {
+    previous(): Column {
         return getColumnByIndex(this.getIndex() - 1)
     }
 
-    getNextColumn(): Column {
+    next(): Column {
         return getColumnByIndex(this.getIndex() + 1)
+    }
+
+    distance(column: Column): number {
+        return Math.abs(this.getIndex() - column.getIndex());
     }
 }
 
