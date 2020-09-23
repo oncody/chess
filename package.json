@@ -28,6 +28,7 @@
     "eslint-plugin-flowtype": "latest",
     "eslint-plugin-flowtype-errors": "latest",
     "flow-bin": "latest",
+    "lodash": "latest",
     "oncody-eslint-config": "latest",
     "path": "latest",
     "webpack": "latest",
