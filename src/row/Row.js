@@ -1,27 +1,36 @@
 import {getRowByIndex} from './Rows'
+import type {RowIndex} from "./RowIndex";
 
-class Row {
-    index: number;
+export default class Row {
+    index: RowIndex;
 
-    constructor(index: number) {
+    constructor(index: RowIndex) {
         this.index = index;
     }
 
-    getIndex(): number {
+    getIndex(): RowIndex {
         return this.index;
     }
 
     previous(): Row {
-        return getRowByIndex(this.getIndex() - 1)
+        let optionalRow: ?Row = getRowByIndex(this.getIndex() - 1);
+        if(!optionalRow) {
+            throw new Error('Index out of bounds');
+        }
+
+        return optionalRow;
     }
 
     next(): Row {
-        return getRowByIndex(this.getIndex() + 1)
+        let optionalRow: ?Row = getRowByIndex(this.getIndex() + 1);
+        if(!optionalRow) {
+            throw new Error('Index out of bounds');
+        }
+
+        return optionalRow;
     }
 
     distance(row: Row): number {
         return Math.abs(this.getIndex() - row.getIndex());
     }
 }
-
-export default Row;

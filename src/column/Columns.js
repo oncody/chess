@@ -1,6 +1,6 @@
 import Column from './Column';
 
-import type ColumnLetter, {
+import {
     COLUMN_A,
     COLUMN_B,
     COLUMN_C,
@@ -11,7 +11,7 @@ import type ColumnLetter, {
     COLUMN_H
 } from './ColumnLetter';
 
-import type ColumnIndex, {
+import {
     COLUMN_1,
     COLUMN_2,
     COLUMN_3,
@@ -22,7 +22,10 @@ import type ColumnIndex, {
     COLUMN_8
 } from './ColumnIndex';
 
-const COLUMNS = [
+import type {ColumnIndex} from './ColumnIndex';
+import type {ColumnLetter} from './ColumnLetter';
+
+const COLUMNS: Array<Column> = [
     new Column(COLUMN_A, COLUMN_1),
     new Column(COLUMN_B, COLUMN_2),
     new Column(COLUMN_C, COLUMN_3),
@@ -33,12 +36,24 @@ const COLUMNS = [
     new Column(COLUMN_H, COLUMN_8)
 ];
 
-let getColumnByIndex = function(index: ColumnIndex): Column {
-    return COLUMNS.find(column => column.getIndex() === index);
+export function getColumnByIndex(index: number): Column {
+    let optionalColumn: ?Column = COLUMNS.find(column => column.getIndex() === index);
+    if(!optionalColumn) {
+        throw new Error('Index out of bounds');
+    }
+
+    return optionalColumn;
 }
 
-let getColumnByLetter = function(letter: ColumnLetter): Column {
-    return COLUMNS.find(column => column.getLetter() === letter);
+export function getColumnByLetter(letter: ColumnLetter): Column {
+    let optionalColumn: ?Column = COLUMNS.find(column => column.getLetter() === letter);
+    if(!optionalColumn) {
+        throw new Error('Index out of bounds');
+    }
+
+    return optionalColumn;
 }
 
-export {getColumnByIndex, getColumnByLetter};
+export function columns(): Array<Column> {
+    return COLUMNS;
+}

@@ -1,9 +1,7 @@
-import type Column from './column/Column';
-import type Row from './row/Row';
+import Column from './column/Column';
+import Row from './row/Row';
 
-const _ = require('lodash');
-
-class Coordinate {
+export default class Coordinate {
     column: Column;
     row: Row;
 
@@ -20,5 +18,3 @@ class Coordinate {
         return this.row;
     }
 }
-
-export default Coordinate;

@@ -1,11 +1,11 @@
-import type Color from './Color';
+import type {Color} from './Color';
 import Coordinate from './Coordinate';
-import type Piece from './piece/Piece';
+import type {Piece} from './piece/Piece';
 
-class Square {
+export default class Square {
     color: Color;
     coordinate: Coordinate;
-    piece: Piece;
+    piece: ?Piece;
 
     constructor(color: Color, coordinate: Coordinate) {
         this.color = color;
@@ -20,7 +20,7 @@ class Square {
         return this.coordinate;
     }
 
-    getPiece(): Piece {
+    getPiece(): ?Piece {
         return this.piece;
     }
 
@@ -32,5 +32,3 @@ class Square {
         this.piece = null;
     }
 }
-
-export default Square;

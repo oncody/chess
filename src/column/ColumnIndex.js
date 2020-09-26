@@ -7,17 +7,16 @@ const COLUMN_6 = 6;
 const COLUMN_7 = 7;
 const COLUMN_8 = 8;
 
-type ColumnIndex = COLUMN_1 |
-    COLUMN_2 |
-    COLUMN_3 |
-    COLUMN_4 |
-    COLUMN_5 |
-    COLUMN_6 |
-    COLUMN_7 |
-    COLUMN_8;
+export type ColumnIndex = 1 |
+    2 |
+    3 |
+    4 |
+    5 |
+    6 |
+    7 |
+    8;
 
 export {
-    type ColumnIndex as default,
     COLUMN_1,
     COLUMN_2,
     COLUMN_3,

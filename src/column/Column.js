@@ -1,33 +1,43 @@
-import {getColumnByLetter, getColumnByIndex} from './Columns'
+import {getColumnByIndex} from './Columns'
+import type {ColumnIndex} from "./ColumnIndex";
+import type {ColumnLetter} from "./ColumnLetter";
 
-class Column {
-    letter: string;
-    index: number;
+export default class Column {
+    letter: ColumnLetter;
+    index: ColumnIndex;
 
-    constructor(letter: string, index: number) {
+    constructor(letter: ColumnLetter, index: ColumnIndex) {
         this.letter = letter;
         this.index = index;
     }
 
-    getLetter(): string {
+    getLetter(): ColumnLetter {
         return this.letter;
     }
 
-    getIndex(): number {
+    getIndex(): ColumnIndex {
         return this.index;
     }
 
     previous(): Column {
-        return getColumnByIndex(this.getIndex() - 1)
+        let optionalColumn: ?Column = getColumnByIndex(this.getIndex() - 1);
+        if(!optionalColumn) {
+            throw new Error('Index out of bounds');
+        }
+
+        return optionalColumn;
     }
 
     next(): Column {
-        return getColumnByIndex(this.getIndex() + 1)
+        let optionalColumn: ?Column = getColumnByIndex(this.getIndex() + 1);
+        if(!optionalColumn) {
+            throw new Error('Index out of bounds');
+        }
+
+        return optionalColumn;
     }
 
     distance(column: Column): number {
         return Math.abs(this.getIndex() - column.getIndex());
     }
 }
-
-export default Column;

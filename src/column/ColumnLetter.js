@@ -7,17 +7,16 @@ const COLUMN_F = 'f';
 const COLUMN_G = 'g';
 const COLUMN_H = 'h';
 
-type ColumnLetter = COLUMN_A |
-    COLUMN_B |
-    COLUMN_C |
-    COLUMN_D |
-    COLUMN_E |
-    COLUMN_F |
-    COLUMN_G |
-    COLUMN_H;
+export type ColumnLetter = 'a' |
+    'b' |
+    'c' |
+    'd' |
+    'e' |
+    'f' |
+    'g' |
+    'h';
 
 export {
-    type ColumnLetter as default,
     COLUMN_A,
     COLUMN_B,
     COLUMN_C,

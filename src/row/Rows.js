@@ -1,17 +1,8 @@
 import Row from './Row';
+import {ROW_1, ROW_2, ROW_3, ROW_4, ROW_5, ROW_6, ROW_7, ROW_8} from './RowIndex';
+import type {RowIndex} from "./RowIndex";
 
-import type RowIndex, {
-    ROW_1,
-    ROW_2,
-    ROW_3,
-    ROW_4,
-    ROW_5,
-    ROW_6,
-    ROW_7,
-    ROW_8
-} from './RowIndex';
-
-const ROWS = [
+const ROWS: Array<Row> = [
     new Row(ROW_1),
     new Row(ROW_2),
     new Row(ROW_3),
@@ -22,9 +13,17 @@ const ROWS = [
     new Row(ROW_8),
 ];
 
-let getRowByIndex = function(index: RowIndex): Row {
-    return ROWS.find(row => row.getIndex() === index);
+export function getRowByIndex(index: number): Row {
+    let optionalRow: ?Row = ROWS.find(row => row.getIndex() === index);
+    if (!optionalRow) {
+        throw new Error('Index out of bounds');
+    }
+
+    return optionalRow;
+
+
 }
 
-
-export {getRowByIndex};
+export function rows(): Array<Row> {
+    return ROWS;
+}

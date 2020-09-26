@@ -1,6 +1,7 @@
 import Coordinate from './Coordinate';
+import _ from 'lodash';
 
-class CoordinatePair {
+export default class CoordinatePair {
     firstCoordinate: Coordinate;
     secondCoordinate: Coordinate;
 
@@ -25,19 +26,19 @@ class CoordinatePair {
             (this.distanceBetweenRows() + this.distanceBetweenColumns() === 3);
     }
 
-    isAdjacent(coordinate: Coordinate): boolean {
+    isAdjacent(): boolean {
         let isColumnAdjacent = this.distanceBetweenColumns() < 2;
         let isRowAdjacent = this.distanceBetweenRows() < 2;
         return isColumnAdjacent && isRowAdjacent;
     }
 
-    isOrthogonal(coordinate: Coordinate): boolean {
+    isOrthogonal(): boolean {
         let sameColumn = this.firstCoordinate.getColumn() === this.secondCoordinate.getColumn();
         let sameRow = this.firstCoordinate.getRow() === this.secondCoordinate.getRow();
         return sameColumn || sameRow;
     }
 
-    isDiagnol(coordinate: Coordinate): boolean {
+    isDiagnol(): boolean {
         return this.distanceBetweenColumns() === this.distanceBetweenRows();
     }
 
