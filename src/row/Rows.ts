@@ -1,5 +1,5 @@
 import Row from './Row';
-import type {RowIndex} from "./RowIndex";
+import {RowIndex} from "./RowIndex";
 
 const ROWS: Array<Row> = [
     new Row(RowIndex.ROW_1),

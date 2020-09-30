@@ -47,7 +47,7 @@ export default class CoordinatePair {
     }
 
     getCoordinatesBetween(): Array<Coordinate> {
-        let coordinatesBetween = [];
+        let coordinatesBetween: Array<Coordinate> = [];
 
         if (this.areEqual()) {
             return coordinatesBetween;
