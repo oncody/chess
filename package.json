@@ -4,11 +4,10 @@
   "scripts": {
     "build": "webpack --mode=development",
     "flow": "flow",
-    "format": "eslint --fix index.js"
+    "format": "eslint --fix src/index.ts"
   },
   "keywords": [
     "babel",
-    "eslint",
     "flow",
     "webpack"
   ],
@@ -21,15 +20,9 @@
     "@babel/preset-env": "latest",
     "@babel/preset-flow": "latest",
     "babel-loader": "latest",
-    "babel-eslint": "latest",
     "babel-plugin-transform-flow-strip-types": "latest",
-    "eslint": "latest",
-    "eslint-loader": "latest",
-    "eslint-plugin-flowtype": "latest",
-    "eslint-plugin-flowtype-errors": "latest",
     "flow-bin": "latest",
     "lodash": "latest",
-    "oncody-eslint-config": "latest",
     "path": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"

@@ -1,5 +1,5 @@
 import {getRowByIndex} from './Rows'
-import type {RowIndex} from "./RowIndex";
+import {RowIndex} from "./RowIndex";
 
 export default class Row {
     index: RowIndex;
@@ -13,7 +13,7 @@ export default class Row {
     }
 
     previous(): Row {
-        let optionalRow: ?Row = getRowByIndex(this.getIndex() - 1);
+        let optionalRow: Row | undefined = getRowByIndex(this.getIndex() - 1);
         if(!optionalRow) {
             throw new Error('Index out of bounds');
         }
@@ -22,7 +22,7 @@ export default class Row {
     }
 
     next(): Row {
-        let optionalRow: ?Row = getRowByIndex(this.getIndex() + 1);
+        let optionalRow: Row | undefined = getRowByIndex(this.getIndex() + 1);
         if(!optionalRow) {
             throw new Error('Index out of bounds');
         }

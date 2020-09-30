@@ -81,5 +81,7 @@ export default class CoordinatePair {
 
             coordinatesBetween.push(new Coordinate(currentColumn, currentRow));
         }
+
+        return coordinatesBetween;
     }
 }

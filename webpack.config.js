@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'development',
   entry: [
-    './index.js'
+    './index.ts'
   ],
   module: {
     rules: [
@@ -18,13 +18,6 @@ module.exports = {
               ]
             }
           },
-          {
-            loader: 'eslint-loader',
-            options: {
-              fix: true,
-              configFile: '.eslintrc.js'
-            }
-          }
         ]
       }
     ]

@@ -1,6 +1,6 @@
 import {getColumnByIndex} from './Columns'
-import type {ColumnIndex} from "./ColumnIndex";
-import type {ColumnLetter} from "./ColumnLetter";
+import {ColumnLetter} from "./ColumnLetter";
+import {ColumnIndex} from "./ColumnIndex";
 
 export default class Column {
     letter: ColumnLetter;
@@ -20,7 +20,7 @@ export default class Column {
     }
 
     previous(): Column {
-        let optionalColumn: ?Column = getColumnByIndex(this.getIndex() - 1);
+        let optionalColumn: Column | undefined = getColumnByIndex(this.getIndex() - 1);
         if(!optionalColumn) {
             throw new Error('Index out of bounds');
         }
@@ -29,7 +29,7 @@ export default class Column {
     }
 
     next(): Column {
-        let optionalColumn: ?Column = getColumnByIndex(this.getIndex() + 1);
+        let optionalColumn: Column | undefined = getColumnByIndex(this.getIndex() + 1);
         if(!optionalColumn) {
             throw new Error('Index out of bounds');
         }

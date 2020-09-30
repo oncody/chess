@@ -5,7 +5,7 @@ import type {Piece} from './piece/Piece';
 export default class Square {
     color: Color;
     coordinate: Coordinate;
-    piece: ?Piece;
+    piece?: Piece;
 
     constructor(color: Color, coordinate: Coordinate) {
         this.color = color;
@@ -20,7 +20,7 @@ export default class Square {
         return this.coordinate;
     }
 
-    getPiece(): ?Piece {
+    getPiece(): Piece | undefined {
         return this.piece;
     }
 
@@ -29,6 +29,6 @@ export default class Square {
     }
 
     removePiece(piece: Piece): void {
-        this.piece = null;
+        this.piece = undefined;
     }
 }
