@@ -1,5 +1,5 @@
 import Coordinate from './Coordinate';
-import _ from 'lodash';
+const _ = require('lodash');
 
 export default class CoordinatePair {
     firstCoordinate: Coordinate;
