@@ -18,12 +18,16 @@ export default class CoordinatePair {
         return this.firstCoordinate.getRow().distance(this.secondCoordinate.getRow());
     }
 
+    orthognalDistanceBetween(): number {
+        return this.distanceBetweenRows() + this.distanceBetweenColumns();
+    }
+
     isKnightMoveAway(): boolean {
         // Both need to be less than 3 distance away
         // The row distance + column distance need to equal 3
         return (this.distanceBetweenColumns() < 3) &&
             (this.distanceBetweenRows() < 3) &&
-            (this.distanceBetweenRows() + this.distanceBetweenColumns() === 3);
+            (this.orthognalDistanceBetween() === 3);
     }
 
     isAdjacent(): boolean {
