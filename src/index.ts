@@ -1,3 +1,3 @@
-import Board from './Board';
+// import Board from './Board';
 
-let board = new Board();
+// let board = new Board();

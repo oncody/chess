@@ -1,7 +1,7 @@
 import type {Piece} from './Piece';
-import type {Color} from "../Color";
-import Coordinate from "../Coordinate";
-import Board from "../Board";
+import type {Color} from '../Color';
+import Coordinate from '../Coordinate';
+import Board from '../Board';
 
 class Pawn implements Piece {
     color: Color;
@@ -20,8 +20,16 @@ class Pawn implements Piece {
         return this.coordinate;
     }
 
+    canMoveThroughPieces(): boolean {
+        return false;
+    }
+
     isLegalMove(board: Board,
                 coordinate: Coordinate): boolean {
+        if(board && coordinate) {
+            return true;
+        }
+
         return true;
     }
 }

@@ -28,7 +28,7 @@ export default class Square {
         this.piece = piece
     }
 
-    removePiece(piece: Piece): void {
+    removePiece(): void {
         this.piece = undefined;
     }
 }
