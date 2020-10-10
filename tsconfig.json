@@ -8,7 +8,7 @@
      "removeComments": true,
 //     "isolatedModules": true,
     "strict": true,
-     "noUnusedLocals": true,
+//     "noUnusedLocals": true,
      "noUnusedParameters": true,
      "noImplicitReturns": true,
      "noFallthroughCasesInSwitch": true,

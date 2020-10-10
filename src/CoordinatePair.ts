@@ -26,7 +26,7 @@ export default class CoordinatePair {
     }
 
     isKnightMoveAway(): boolean {
-        // Both need to be less than 3 distance away
+        // Both the column and the row need to be less than 3 distance away
         // The row distance + column distance need to equal 3
         return (this.distanceBetweenColumns() < 3) &&
             (this.distanceBetweenRows() < 3) &&

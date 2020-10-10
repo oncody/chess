@@ -16,35 +16,53 @@ class Board {
         let isBlack = true;
 
         for(let columnString in Column) {
+            if(isNaN(Number(columnString))) {
+                continue;
+            }
+
             let column: Column = Column[Column[columnString] as keyof typeof Column];
-            let squaresColumn = [];
+            let squaresRow: Array<Square> = [];
 
             for(let rowString in Row) {
+                if(isNaN(Number(rowString))) {
+                    continue;
+                }
+
                 let row: Row = Row[Row[rowString] as keyof typeof Row];
                 let color = isBlack ? Color.Black : Color.White;
                 let coordinate = new Coordinate(column, row);
                 let square = new Square(color, coordinate);
-                squaresColumn.push(square);
+                squaresRow.push(square);
                 isBlack = !isBlack;
             }
 
-            this.squares.push(squaresColumn);
+            this.squares.push(squaresRow);
             isBlack = !isBlack;
         }
     }
 
-    getSquare() {
-
+    getSquare(column: Column, row: Row) {
+        return this.squares[column][row];
     }
 
     print() {
-        for(const column of this.squares) {
+        for(let columnString in Column) {
+            let column: Column = Column[Column[columnString] as keyof typeof Column];
+            // console.log('column: ' + column + ' type:' + (typeof column));
+        }
+
+        for(let rowString in Row) {
+            let row: Row = Row[Row[rowString] as keyof typeof Row];
+            // console.log('row: ' + row + ' type:' + (typeof row));
+        }
+
+        for(const column of this.squares.slice().reverse()) {
             let string = '';
 
             for(const square of column) {
-                string += ' ';
                 let squareColor = square.getColor() === Color.Black ? 'B' : 'W';
                 string += squareColor;
+                string += ' ';
             }
 
             console.log(string);
