@@ -41,11 +41,19 @@ class Board {
         }
     }
 
-    getSquare(column: Column, row: Row) {
-        return this.squares[column][row];
+    getSquare(column: number, row: number): Square {
+        return this.squares[column - 1][row - 1];
     }
 
     print() {
+        let square1 = this.getSquare(Column.A, Row.ROW_8);
+        console.log(square1.getCoordinate().getColumn() + ' ' + square1.getCoordinate().getRow());
+
+        let square2 = this.getSquare(Column.H, Row.ROW_1);
+        console.log(square2.getCoordinate().getColumn() + ' ' + square2.getCoordinate().getRow());
+
+
+
         for(let columnString in Column) {
             let column: Column = Column[Column[columnString] as keyof typeof Column];
             // console.log('column: ' + column + ' type:' + (typeof column));
