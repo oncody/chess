@@ -1,12 +1,12 @@
 import {getColumnByIndex} from './Columns'
-import {ColumnLetter} from "./ColumnLetter";
-import {ColumnIndex} from "./ColumnIndex";
+import {ColumnLetter} from './ColumnLetter';
+import {BoardIndex} from '../BoardIndex';
 
 export default class Column {
     letter: ColumnLetter;
-    index: ColumnIndex;
+    index: BoardIndex;
 
-    constructor(letter: ColumnLetter, index: ColumnIndex) {
+    constructor(letter: ColumnLetter, index: BoardIndex) {
         this.letter = letter;
         this.index = index;
     }
@@ -15,7 +15,7 @@ export default class Column {
         return this.letter;
     }
 
-    getIndex(): ColumnIndex {
+    getIndex(): BoardIndex {
         return this.index;
     }
 

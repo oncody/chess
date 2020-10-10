@@ -1,15 +1,15 @@
 import Row from './Row';
-import {RowIndex} from "./RowIndex";
+import {BoardIndex} from '../BoardIndex';
 
 const ROWS: Array<Row> = [
-    new Row(RowIndex.ROW_1),
-    new Row(RowIndex.ROW_2),
-    new Row(RowIndex.ROW_3),
-    new Row(RowIndex.ROW_4),
-    new Row(RowIndex.ROW_5),
-    new Row(RowIndex.ROW_6),
-    new Row(RowIndex.ROW_7),
-    new Row(RowIndex.ROW_8),
+    new Row(BoardIndex.INDEX_1),
+    new Row(BoardIndex.INDEX_2),
+    new Row(BoardIndex.INDEX_3),
+    new Row(BoardIndex.INDEX_4),
+    new Row(BoardIndex.INDEX_5),
+    new Row(BoardIndex.INDEX_6),
+    new Row(BoardIndex.INDEX_7),
+    new Row(BoardIndex.INDEX_8)
 ];
 
 export function getRowByIndex(index: number): Row {

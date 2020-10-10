@@ -1,17 +1,16 @@
 import Column from './Column';
-
-import {ColumnIndex} from './ColumnIndex';
 import {ColumnLetter} from './ColumnLetter';
+import {BoardIndex} from '../BoardIndex';
 
 const COLUMNS: Array<Column> = [
-    new Column(ColumnLetter.COLUMN_A, ColumnIndex.COLUMN_1),
-    new Column(ColumnLetter.COLUMN_B, ColumnIndex.COLUMN_2),
-    new Column(ColumnLetter.COLUMN_C, ColumnIndex.COLUMN_3),
-    new Column(ColumnLetter.COLUMN_D, ColumnIndex.COLUMN_4),
-    new Column(ColumnLetter.COLUMN_E, ColumnIndex.COLUMN_5),
-    new Column(ColumnLetter.COLUMN_F, ColumnIndex.COLUMN_6),
-    new Column(ColumnLetter.COLUMN_G, ColumnIndex.COLUMN_7),
-    new Column(ColumnLetter.COLUMN_H, ColumnIndex.COLUMN_8)
+    new Column(ColumnLetter.COLUMN_A, BoardIndex.INDEX_1),
+    new Column(ColumnLetter.COLUMN_B, BoardIndex.INDEX_2),
+    new Column(ColumnLetter.COLUMN_C, BoardIndex.INDEX_3),
+    new Column(ColumnLetter.COLUMN_D, BoardIndex.INDEX_4),
+    new Column(ColumnLetter.COLUMN_E, BoardIndex.INDEX_5),
+    new Column(ColumnLetter.COLUMN_F, BoardIndex.INDEX_6),
+    new Column(ColumnLetter.COLUMN_G, BoardIndex.INDEX_7),
+    new Column(ColumnLetter.COLUMN_H, BoardIndex.INDEX_8)
 ];
 
 export function getColumnByIndex(index: number): Column {

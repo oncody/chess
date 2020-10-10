@@ -1,14 +1,14 @@
 import {getRowByIndex} from './Rows'
-import {RowIndex} from "./RowIndex";
+import {BoardIndex} from '../BoardIndex';
 
 export default class Row {
-    index: RowIndex;
+    index: BoardIndex;
 
-    constructor(index: RowIndex) {
+    constructor(index: BoardIndex) {
         this.index = index;
     }
 
-    getIndex(): RowIndex {
+    getIndex(): BoardIndex {
         return this.index;
     }
 

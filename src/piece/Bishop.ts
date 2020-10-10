@@ -20,6 +20,10 @@ class Bishop implements Piece {
         return this.coordinate;
     }
 
+    canMoveThroughPieces(): boolean {
+        return false;
+    }
+
     isLegalMove(board: Board,
                 coordinate: Coordinate): boolean {
         if(board && coordinate) {
