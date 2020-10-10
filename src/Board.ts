@@ -31,6 +31,10 @@ class Board {
         }
     }
 
+    getSquare() {
+
+    }
+
     print() {
         for(const column of this.squares) {
             let string = '';

@@ -1,22 +1,20 @@
 import {getColumnByIndex} from './Columns'
 import {ColumnLetter} from './ColumnLetter';
-import {BoardIndex} from '../BoardIndex';
 
 export default class Column {
     letter: ColumnLetter;
-    index: BoardIndex;
 
-    constructor(letter: ColumnLetter, index: BoardIndex) {
+    constructor(letter: ColumnLetter) {
         this.letter = letter;
-        this.index = index;
     }
 
     getLetter(): ColumnLetter {
         return this.letter;
     }
 
-    getIndex(): BoardIndex {
-        return this.index;
+    getIndex(): number {
+        // todo see if this works
+        return this.letter.valueOf();
     }
 
     previous(): Column {

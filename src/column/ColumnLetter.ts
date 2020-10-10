@@ -1,10 +1,10 @@
 export enum ColumnLetter {
-    COLUMN_A = 'a',
-    COLUMN_B = 'b',
-    COLUMN_C = 'c',
-    COLUMN_D = 'd',
-    COLUMN_E = 'e',
-    COLUMN_F = 'f',
-    COLUMN_G = 'g',
-    COLUMN_H = 'h'
+    COLUMN_A = 1,
+    COLUMN_B,
+    COLUMN_C,
+    COLUMN_D,
+    COLUMN_E,
+    COLUMN_F,
+    COLUMN_G,
+    COLUMN_H
 }
