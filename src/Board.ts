@@ -16,6 +16,7 @@ class Board {
         let isBlack = true;
 
         for(let columnString in Column) {
+            // when iterating over enums it doubles the values. one for int -> string and one for string -> int
             if(isNaN(Number(columnString))) {
                 continue;
             }
@@ -24,6 +25,7 @@ class Board {
             let squaresRow: Array<Square> = [];
 
             for(let rowString in Row) {
+                // when iterating over enums it doubles the values. one for int -> string and one for string -> int
                 if(isNaN(Number(rowString))) {
                     continue;
                 }
