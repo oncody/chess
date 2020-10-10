@@ -1,4 +1,7 @@
 import Coordinate from './Coordinate';
+import {Column} from './Column';
+import {Row} from './Row';
+
 const _ = require('lodash');
 
 export default class CoordinatePair {
@@ -11,11 +14,11 @@ export default class CoordinatePair {
     }
 
     distanceBetweenColumns(): number {
-        return this.firstCoordinate.getColumn().distance(this.secondCoordinate.getColumn());
+        return Math.abs(this.firstCoordinate.getColumn() - this.secondCoordinate.getColumn());
     }
 
     distanceBetweenRows(): number {
-        return this.firstCoordinate.getRow().distance(this.secondCoordinate.getRow());
+        return Math.abs(this.firstCoordinate.getRow() - this.secondCoordinate.getRow());
     }
 
     orthognalDistanceBetween(): number {
@@ -61,26 +64,26 @@ export default class CoordinatePair {
             return coordinatesBetween;
         }
 
-        let firstColumn = this.firstCoordinate.getColumn();
-        let firstRow = this.firstCoordinate.getRow();
+        let firstColumn: Column = this.firstCoordinate.getColumn();
+        let firstRow: Row = this.firstCoordinate.getRow();
 
-        let secondColumn = this.secondCoordinate.getColumn();
-        let secondRow = this.secondCoordinate.getRow();
+        let secondColumn: Column = this.secondCoordinate.getColumn();
+        let secondRow: Row = this.secondCoordinate.getRow();
 
-        let currentColumn = this.firstCoordinate.getColumn();
-        let currentRow = this.firstCoordinate.getRow();
+        let currentColumn: Column = this.firstCoordinate.getColumn();
+        let currentRow: Row = this.firstCoordinate.getRow();
 
         while ((currentColumn !== secondColumn) && (currentRow !== secondRow)) {
-            if(firstColumn.getIndex() > secondColumn.getIndex()) {
-                currentColumn = currentColumn.next();
-            } else if(firstColumn.getIndex() < secondColumn.getIndex()) {
-                currentColumn = currentColumn.previous();
+            if(firstColumn > secondColumn) {
+                currentColumn = Column[Column[currentColumn + 1] as keyof typeof Column];
+            } else if(firstColumn < secondColumn) {
+                currentColumn = Column[Column[currentColumn - 1] as keyof typeof Column];
             }
 
-            if(firstRow.getIndex() > secondRow.getIndex()) {
-                currentRow = currentRow.next();
-            } else if(firstRow.getIndex() < secondRow.getIndex()) {
-                currentRow = currentRow.previous();
+            if(firstRow > secondRow) {
+                currentRow = Row[Row[currentRow + 1] as keyof typeof Row];
+            } else if(firstRow < secondRow) {
+                currentRow = Row[Row[currentRow - 1] as keyof typeof Row];
             }
 
             coordinatesBetween.push(new Coordinate(currentColumn, currentRow));

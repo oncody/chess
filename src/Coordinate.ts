@@ -1,5 +1,5 @@
-import Column from './column/Column';
-import Row from './row/Row';
+import {Column} from './Column';
+import {Row} from './Row';
 
 export default class Coordinate {
     column: Column;

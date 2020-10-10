@@ -1,7 +1,7 @@
 import Square from './Square';
-import {columns} from './column/Columns';
+import {Column} from './Column';
 import Coordinate from './Coordinate';
-import {rows} from './row/Rows';
+import {Row} from './Row';
 import {Color} from "./Color";
 
 class Board {
@@ -15,10 +15,12 @@ class Board {
         this.squares = [];
         let isBlack = true;
 
-        for(const column of columns()) {
+        for(let columnString in Column) {
+            let column: Column = Column[Column[columnString] as keyof typeof Column];
             let squaresColumn = [];
 
-            for(const row of rows()) {
+            for(let rowString in Row) {
+                let row: Row = Row[Row[rowString] as keyof typeof Row];
                 let color = isBlack ? Color.Black : Color.White;
                 let coordinate = new Coordinate(column, row);
                 let square = new Square(color, coordinate);
