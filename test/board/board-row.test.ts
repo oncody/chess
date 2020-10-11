@@ -1,7 +1,7 @@
-import Board from '../src/Board';
-import {Column} from '../src/Column';
-import {Row} from '../src/Row';
-import {Color} from "../src/Color";
+import Board from '../../src/Board';
+import {Column} from '../../src/Column';
+import {Row} from '../../src/Row';
+import {Color} from "../../src/Color";
 
 let board = new Board();
 
