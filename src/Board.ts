@@ -48,16 +48,6 @@ class Board {
     }
 
     print() {
-        for(let columnString in Column) {
-            let column: Column = Column[Column[columnString] as keyof typeof Column];
-            // console.log('column: ' + column + ' type:' + (typeof column));
-        }
-
-        for(let rowString in Row) {
-            let row: Row = Row[Row[rowString] as keyof typeof Row];
-            // console.log('row: ' + row + ' type:' + (typeof row));
-        }
-
         for(const column of this.squares.slice().reverse()) {
             let string = '';
 
