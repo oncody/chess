@@ -52,3 +52,23 @@ test('Orthogonal distance between a1 and h1 is 7', () => {
     expect(coordinatePair.orthognalDistanceBetween()).toBe(7);
 });
 
+test('Orthogonal distance between a1 and b2 is 2', () => {
+    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let b2 = new Coordinate(Column.B, Row.ROW_2);
+    let coordinatePair = new CoordinatePair(a1, b2);
+    expect(coordinatePair.orthognalDistanceBetween()).toBe(2);
+});
+
+test('Orthogonal distance between b2 and a1 is 2', () => {
+    let b2 = new Coordinate(Column.B, Row.ROW_2);
+    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let coordinatePair = new CoordinatePair(b2, a1);
+    expect(coordinatePair.orthognalDistanceBetween()).toBe(2);
+});
+
+test('Orthogonal distance between a1 and b3 is 3', () => {
+    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let b3 = new Coordinate(Column.B, Row.ROW_3);
+    let coordinatePair = new CoordinatePair(a1, b3);
+    expect(coordinatePair.orthognalDistanceBetween()).toBe(3);
+});
