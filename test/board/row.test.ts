@@ -1,6 +1,6 @@
-import Board from '../../src/Board';
-import {Column} from '../../src/Column';
-import {Row} from '../../src/Row';
+import Board from '../../src/board/Board';
+import {Column} from '../../src/board/Column';
+import {Row} from '../../src/board/Row';
 
 test('Board get square a1 has row 1', () => {
     let board = new Board();

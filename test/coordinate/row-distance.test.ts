@@ -1,5 +1,5 @@
-import {Column} from "../../src/Column";
-import {Row} from "../../src/Row";
+import {Column} from "../../src/board/Column";
+import {Row} from "../../src/board/Row";
 import CoordinatePair from "../../src/CoordinatePair";
 import Coordinate from "../../src/Coordinate";
 

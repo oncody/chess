@@ -1,8 +1,8 @@
-import Square from './Square';
-import {Column} from './Column';
-import Coordinate from './Coordinate';
-import {Row} from './Row';
-import {Color} from "./Color";
+import Square from '../Square';
+import {Column, columns} from './Column';
+import Coordinate from '../Coordinate';
+import {Row, rows} from './Row';
+import {Color} from "../Color";
 
 class Board {
     /**
@@ -15,22 +15,10 @@ class Board {
         this.squares = [];
         let isBlack = true;
 
-        for(let columnString in Column) {
-            // when iterating over enums it doubles the values. one for int -> string and one for string -> int
-            if(isNaN(Number(columnString))) {
-                continue;
-            }
-
-            let column: Column = Column[Column[columnString] as keyof typeof Column];
+         for(let column of columns()) {
             let squaresRow: Array<Square> = [];
 
-            for(let rowString in Row) {
-                // when iterating over enums it doubles the values. one for int -> string and one for string -> int
-                if(isNaN(Number(rowString))) {
-                    continue;
-                }
-
-                let row: Row = Row[Row[rowString] as keyof typeof Row];
+            for(let row of rows()) {
                 let color = isBlack ? Color.Black : Color.White;
                 let coordinate = new Coordinate(column, row);
                 let square = new Square(color, coordinate);

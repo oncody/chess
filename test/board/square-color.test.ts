@@ -1,6 +1,6 @@
-import Board from '../../src/Board';
-import {Column} from '../../src/Column';
-import {Row} from '../../src/Row';
+import Board from '../../src/board/Board';
+import {Column} from '../../src/board/Column';
+import {Row} from '../../src/board/Row';
 import {Color} from "../../src/Color";
 
 test('Board get square a1 is black', () => {

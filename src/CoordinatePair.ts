@@ -1,6 +1,6 @@
 import Coordinate from './Coordinate';
-import {Column} from './Column';
-import {Row} from './Row';
+import {Column} from './board/Column';
+import {Row} from './board/Row';
 
 const _ = require('lodash');
 

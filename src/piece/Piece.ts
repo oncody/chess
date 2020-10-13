@@ -1,6 +1,6 @@
 import type {Color} from '../Color';
 import Coordinate from '../Coordinate';
-import Board from '../Board';
+import Board from '../board/Board';
 
 export interface Piece {
     getColor(): Color;
