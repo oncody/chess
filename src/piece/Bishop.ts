@@ -18,6 +18,10 @@ export default class Bishop implements Piece {
     }
 
     isLegalMove(source: Coordinate, destination: Coordinate): boolean {
+        if (source && destination) {
+            return false;
+        }
+
         return true;
     }
 }

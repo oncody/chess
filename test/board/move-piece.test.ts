@@ -11,6 +11,7 @@ import CannotMoveOpponentsPieceException from '../../src/board/Exceptions/Cannot
 import CannotCaptureOwnPieceException from '../../src/board/Exceptions/CannotCaptureOwnPieceException';
 import Rook from '../../src/piece/Rook';
 import CannotMoveThroughPiecesException from '../../src/board/Exceptions/CannotMoveThroughPiecesException';
+import Bishop from '../../src/piece/Bishop';
 
 test('Moving to same square throws an exception', () => {
     let board = new Board();
@@ -117,6 +118,21 @@ test('Cannot move through pieces horizontally left', () => {
     let whiteRook = new Rook(Color.White);
     board.getSquare(source).addPiece(whiteRook);
     board.getSquare(d1).addPiece(whiteRook);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
+
+test('Cannot move through pieces diagnolly up and right', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.H, Row.ROW_8);
+    let b2 = new Coordinate(Column.B, Row.ROW_2);
+    let whiteBishop = new Bishop(Color.White);
+    board.getSquare(source).addPiece(whiteBishop);
+    board.getSquare(b2).addPiece(whiteBishop);
 
     expect(() => {
         board.movePiece(player, source, destination)
