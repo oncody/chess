@@ -18,20 +18,17 @@ export default class Knight implements Piece {
     }
 
     isLegalMove(source: Coordinate, destination: Coordinate): boolean {
-        if (source && destination) {
+        // Both the column and the row need to be less than 3 distance away
+        // The row distance + column distance need to equal 3
+        if (source.columnsBetween(destination) > 2) {
             return false;
         }
 
-        return true;
-    }
+        if(source.rowsBetween(destination) > 2) {
+            return false;
+        }
 
-    isKnightMoveAway(): boolean {
-        // Both the column and the row need to be less than 3 distance away
-        // The row distance + column distance need to equal 3
-        // return (this.distanceBetweenColumns() < 3) &&
-        //   (this.distanceBetweenRows() < 3) &&
-        //   (this.orthognalDistanceBetween() === 3);
-        return true;
+        return source.orthognalDistanceBetween(destination) === 3;
     }
 }
 

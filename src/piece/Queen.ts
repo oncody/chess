@@ -1,6 +1,7 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import Coordinate from '../board/Coordinate';
+import {moveCursor} from 'readline';
 
 export default class Queen implements Piece {
     color: Color;
@@ -18,7 +19,7 @@ export default class Queen implements Piece {
     }
 
     isLegalMove(source: Coordinate, destination: Coordinate): boolean {
-        return true;
+        return source.isDiagnol(destination) || source.isOrthogonal(destination);
     }
 }
 

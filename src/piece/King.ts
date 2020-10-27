@@ -17,8 +17,9 @@ export default class King implements Piece {
         return false;
     }
 
+    // todo: take castling into consideration
     isLegalMove(source: Coordinate, destination: Coordinate): boolean {
-        return true;
+        return source.isAdjacent(destination);
     }
 }
 

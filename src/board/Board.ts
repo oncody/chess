@@ -10,6 +10,7 @@ import CannotCaptureOwnPieceException from './Exceptions/CannotCaptureOwnPieceEx
 import NeedToMoveToADifferentSquareException from './Exceptions/NeedToMoveToADifferentSquareException';
 import {Piece} from '../piece/Piece';
 import CannotMoveThroughPiecesException from './Exceptions/CannotMoveThroughPiecesException';
+import IllegalPieceMoveException from './Exceptions/IllegalPieceMoveException';
 
 class Board {
     /**
@@ -72,6 +73,10 @@ class Board {
                     throw new CannotMoveThroughPiecesException();
                 }
             }
+        }
+
+        if (!piece?.isLegalMove(source, destination)) {
+            throw new IllegalPieceMoveException();
         }
     }
 
