@@ -1,5 +1,3 @@
-import {Column} from "./Column";
-
 export enum Row {
     ROW_1 = 1,
     ROW_2,

@@ -1,6 +1,6 @@
-import type {Color} from './Color';
+import type {Color} from '../Color';
 import Coordinate from './Coordinate';
-import type {Piece} from './piece/Piece';
+import type {Piece} from '../piece/Piece';
 
 export default class Square {
     color: Color;

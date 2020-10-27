@@ -1,7 +1,7 @@
 import {Column} from "../../src/board/Column";
 import {Row} from "../../src/board/Row";
-import CoordinatePair from "../../src/CoordinatePair";
-import Coordinate from "../../src/Coordinate";
+import CoordinatePair from "../../src/board/CoordinatePair";
+import Coordinate from "../../src/board/Coordinate";
 
 test('Column distance between a1 and a8 is 0', () => {
     let a1 = new Coordinate(Column.A, Row.ROW_1);

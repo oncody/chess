@@ -1,7 +1,7 @@
-import Square from '../Square';
-import {Column, columns} from './Column';
-import Coordinate from '../Coordinate';
-import {Row, rows} from './Row';
+import Square from './Square';
+import {columns} from './Column';
+import Coordinate from './Coordinate';
+import {rows} from './Row';
 import {Color} from "../Color";
 
 class Board {
@@ -31,11 +31,14 @@ class Board {
         }
     }
 
-    getSquare(column: number, row: number): Square {
-        return this.squares[column - 1][row - 1];
+    getSquare(coordinate: Coordinate): Square {
+        // Columns and Rows range from 1 to 8
+        // When we access them from the array we need to access them from 0 to 7
+        return this.squares[coordinate.getColumn() - 1][coordinate.getRow() - 1];
     }
 
     print() {
+        // We want to print from top to bottom. Column 8 first so when it prints it will be on top
         for(const column of this.squares.slice().reverse()) {
             let string = '';
 

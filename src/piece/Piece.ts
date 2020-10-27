@@ -1,5 +1,5 @@
 import type {Color} from '../Color';
-import Coordinate from '../Coordinate';
+import Coordinate from '../board/Coordinate';
 import Board from '../board/Board';
 
 export interface Piece {
