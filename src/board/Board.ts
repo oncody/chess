@@ -48,10 +48,6 @@ class Board {
         let sourceSquare: Square = this.getSquare(source);
         let destinationSquare: Square = this.getSquare(destination);
 
-        if (source.areEqual(destination)) {
-            throw new NeedToMoveToADifferentSquareException();
-        }
-
         if (!sourceSquare.getPiece()) {
             throw new NoPieceToMoveException();
         }
@@ -59,6 +55,10 @@ class Board {
         let piece: Piece | undefined = sourceSquare.getPiece();
         if (player.getColor() !== piece?.getColor()) {
             throw new CannotMoveOpponentsPieceException();
+        }
+
+        if (source.areEqual(destination)) {
+            throw new NeedToMoveToADifferentSquareException();
         }
 
         if (destinationSquare.getPiece() && (player.getColor() === destinationSquare.getPiece()?.getColor())) {

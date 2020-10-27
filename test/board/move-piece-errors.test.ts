@@ -13,17 +13,6 @@ import Rook from '../../src/piece/Rook';
 import CannotMoveThroughPiecesException from '../../src/board/Exceptions/CannotMoveThroughPiecesException';
 import Bishop from '../../src/piece/Bishop';
 
-test('Moving to same square throws an exception', () => {
-    let board = new Board();
-    let player = new Player(Color.White);
-    let source = new Coordinate(Column.A, Row.ROW_1)
-    let destination = new Coordinate(Column.A, Row.ROW_1);
-
-    expect(() => {
-        board.movePiece(player, source, destination)
-    }).toThrowError(NeedToMoveToADifferentSquareException);
-});
-
 test('Cannot move a square without a piece', () => {
     let board = new Board();
     let player = new Player(Color.White);
@@ -46,6 +35,19 @@ test('Cannot move opponent\'s piece', () => {
     expect(() => {
         board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveOpponentsPieceException);
+});
+
+test('Moving to same square throws an exception', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.A, Row.ROW_1)
+    let destination = new Coordinate(Column.A, Row.ROW_1);
+    let whiteKnight = new Knight(Color.White);
+    board.getSquare(source).addPiece(whiteKnight);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(NeedToMoveToADifferentSquareException);
 });
 
 test('Cannot capture your own piece', () => {
