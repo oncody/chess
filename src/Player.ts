@@ -2,7 +2,9 @@ import {Color} from './Color';
 
 export default class Player {
     color: Color;
-    hasMovedKing: boolean = false;
+    hasKingMoved: boolean = false;
+    hasRookAMoved: boolean = false;
+    hasRookHMoved: boolean = false;
     hasCastled: boolean = false;
 
     constructor(color: Color) {
