@@ -57,30 +57,43 @@ test('Cannot capture your own piece', () => {
     let firstSquare = new Coordinate(Column.A, Row.ROW_1);
     let secondSquare = new Coordinate(Column.A, Row.ROW_2);
     let coordinatePair = new CoordinatePair(firstSquare, secondSquare);
-    let firstWhiteKnight = new Knight(Color.White);
-    let secondWhiteKnight = new Knight(Color.White);
-    board.getSquare(firstSquare).addPiece(firstWhiteKnight);
-    board.getSquare(secondSquare).addPiece(secondWhiteKnight);
+    let whiteKnight = new Knight(Color.White);
+    board.getSquare(firstSquare).addPiece(whiteKnight);
+    board.getSquare(secondSquare).addPiece(whiteKnight);
 
     expect(() => {
         board.movePiece(player, coordinatePair)
     }).toThrowError(CannotCaptureOwnPieceException);
 });
 
-test('Cannot move through pieces vertically', () => {
+test('Cannot move through pieces vertically up', () => {
     let board = new Board();
     let player = new Player(Color.White);
     let a1 = new Coordinate(Column.A, Row.ROW_1);
     let a4 = new Coordinate(Column.A, Row.ROW_4);
     let a8 = new Coordinate(Column.A, Row.ROW_8);
     let coordinatePair = new CoordinatePair(a1, a8);
-    let firstWhiteRook = new Rook(Color.White);
-    let secondWhiteRook = new Rook(Color.White);
-    board.getSquare(a1).addPiece(firstWhiteRook);
-    board.getSquare(a4).addPiece(secondWhiteRook);
+    let whiteRook = new Rook(Color.White);
+    board.getSquare(a1).addPiece(whiteRook);
+    board.getSquare(a4).addPiece(whiteRook);
 
     expect(() => {
         board.movePiece(player, coordinatePair)
     }).toThrowError(CannotMoveThroughPiecesException);
 });
 
+test('Cannot move through pieces vertically down', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let a4 = new Coordinate(Column.A, Row.ROW_4);
+    let a8 = new Coordinate(Column.A, Row.ROW_8);
+    let coordinatePair = new CoordinatePair(a8, a1);
+    let whiteRook = new Rook(Color.White);
+    board.getSquare(a8).addPiece(whiteRook);
+    board.getSquare(a4).addPiece(whiteRook);
+
+    expect(() => {
+        board.movePiece(player, coordinatePair)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
