@@ -1,6 +1,6 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
-import CoordinatePair from '../board/CoordinatePair';
+import Coordinate from '../board/Coordinate';
 
 export default class Rook implements Piece {
     color: Color;
@@ -17,8 +17,8 @@ export default class Rook implements Piece {
         return false;
     }
 
-    isLegalMove(coordinatePair: CoordinatePair): boolean {
-        if (coordinatePair) {
+    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
+        if (source && destination) {
             return false;
         }
 

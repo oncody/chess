@@ -1,6 +1,6 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
-import CoordinatePair from '../board/CoordinatePair';
+import Coordinate from '../board/Coordinate';
 
 export default class Bishop implements Piece {
     color: Color;
@@ -17,7 +17,7 @@ export default class Bishop implements Piece {
         return false;
     }
 
-    isLegalMove(coordinatePair: CoordinatePair): boolean {
+    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
         return true;
     }
 }

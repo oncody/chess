@@ -1,7 +1,6 @@
 import Board from '../../src/board/Board';
 import Player from '../../src/Player';
 import {Color} from '../../src/Color';
-import CoordinatePair from '../../src/board/CoordinatePair';
 import Coordinate from '../../src/board/Coordinate';
 import {Column} from '../../src/board/Column';
 import {Row} from '../../src/board/Row';
@@ -16,84 +15,95 @@ import CannotMoveThroughPiecesException from '../../src/board/Exceptions/CannotM
 test('Moving to same square throws an exception', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let first = new Coordinate(Column.A, Row.ROW_1)
-    let second = new Coordinate(Column.A, Row.ROW_1);
-    let coordinatePair = new CoordinatePair(first, second);
+    let source = new Coordinate(Column.A, Row.ROW_1)
+    let destination = new Coordinate(Column.A, Row.ROW_1);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
     }).toThrowError(NeedToMoveToADifferentSquareException);
 });
 
 test('Cannot move a square without a piece', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let first = new Coordinate(Column.A, Row.ROW_1);
-    let second = new Coordinate(Column.A, Row.ROW_2);
-    let coordinatePair = new CoordinatePair(first, second);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_2);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
     }).toThrowError(NoPieceToMoveException);
 });
 
 test('Cannot move opponent\'s piece', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let first = new Coordinate(Column.A, Row.ROW_1);
-    let second = new Coordinate(Column.A, Row.ROW_2);
-    let coordinatePair = new CoordinatePair(first, second);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_2);
     let blackKnight = new Knight(Color.Black);
-    board.getSquare(first).addPiece(blackKnight);
+    board.getSquare(source).addPiece(blackKnight);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveOpponentsPieceException);
 });
 
 test('Cannot capture your own piece', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let firstSquare = new Coordinate(Column.A, Row.ROW_1);
-    let secondSquare = new Coordinate(Column.A, Row.ROW_2);
-    let coordinatePair = new CoordinatePair(firstSquare, secondSquare);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_2);
     let whiteKnight = new Knight(Color.White);
-    board.getSquare(firstSquare).addPiece(whiteKnight);
-    board.getSquare(secondSquare).addPiece(whiteKnight);
+    board.getSquare(source).addPiece(whiteKnight);
+    board.getSquare(destination).addPiece(whiteKnight);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
     }).toThrowError(CannotCaptureOwnPieceException);
 });
 
 test('Cannot move through pieces vertically up', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_8);
     let a4 = new Coordinate(Column.A, Row.ROW_4);
-    let a8 = new Coordinate(Column.A, Row.ROW_8);
-    let coordinatePair = new CoordinatePair(a1, a8);
     let whiteRook = new Rook(Color.White);
-    board.getSquare(a1).addPiece(whiteRook);
+
+    board.getSquare(source).addPiece(whiteRook);
     board.getSquare(a4).addPiece(whiteRook);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveThroughPiecesException);
 });
 
 test('Cannot move through pieces vertically down', () => {
     let board = new Board();
     let player = new Player(Color.White);
-    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let source = new Coordinate(Column.A, Row.ROW_8);
+    let destination = new Coordinate(Column.A, Row.ROW_1);
     let a4 = new Coordinate(Column.A, Row.ROW_4);
-    let a8 = new Coordinate(Column.A, Row.ROW_8);
-    let coordinatePair = new CoordinatePair(a8, a1);
     let whiteRook = new Rook(Color.White);
-    board.getSquare(a8).addPiece(whiteRook);
+
+    board.getSquare(source).addPiece(whiteRook);
     board.getSquare(a4).addPiece(whiteRook);
 
     expect(() => {
-        board.movePiece(player, coordinatePair)
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
+
+test('Cannot move through pieces horizontally right', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.A, Row.ROW_1);
+    let destination = new Coordinate(Column.H, Row.ROW_1);
+    let d1 = new Coordinate(Column.D, Row.ROW_1);
+    let whiteRook = new Rook(Color.White);
+    board.getSquare(source).addPiece(whiteRook);
+    board.getSquare(d1).addPiece(whiteRook);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveThroughPiecesException);
 });

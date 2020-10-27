@@ -5,7 +5,6 @@ import {rows} from './Row';
 import {Color} from "../Color";
 import Player from "../Player";
 import NoPieceToMoveException from './Exceptions/NoPieceToMoveException';
-import CoordinatePair from './CoordinatePair';
 import CannotMoveOpponentsPieceException from './Exceptions/CannotMoveOpponentsPieceException';
 import CannotCaptureOwnPieceException from './Exceptions/CannotCaptureOwnPieceException';
 import NeedToMoveToADifferentSquareException from './Exceptions/NeedToMoveToADifferentSquareException';
@@ -45,32 +44,32 @@ class Board {
         return this.squares[coordinate.getColumn() - 1][coordinate.getRow() - 1];
     }
 
-    movePiece(player: Player, coordinatePair: CoordinatePair): void {
-        let startSquare: Square = this.getSquare(coordinatePair.getFirstCoordinate());
-        let endSquare: Square = this.getSquare(coordinatePair.getSecondCoordinate());
+    movePiece(player: Player, source: Coordinate, destination: Coordinate): void {
+        let sourceSquare: Square = this.getSquare(source);
+        let destinationSquare: Square = this.getSquare(destination);
 
-        if (coordinatePair.areEqual()) {
-            throw new NeedToMoveToADifferentSquareException(coordinatePair);
+        if (source.areEqual(destination)) {
+            throw new NeedToMoveToADifferentSquareException();
         }
 
-        if (!startSquare.getPiece()) {
-            throw new NoPieceToMoveException(coordinatePair);
+        if (!sourceSquare.getPiece()) {
+            throw new NoPieceToMoveException();
         }
 
-        let piece: Piece | undefined = startSquare.getPiece();
+        let piece: Piece | undefined = sourceSquare.getPiece();
         if (player.getColor() !== piece?.getColor()) {
-            throw new CannotMoveOpponentsPieceException(coordinatePair);
+            throw new CannotMoveOpponentsPieceException();
         }
 
-        if (endSquare.getPiece() && (player.getColor() === endSquare.getPiece()?.getColor())) {
-            throw new CannotCaptureOwnPieceException(coordinatePair);
+        if (destinationSquare.getPiece() && (player.getColor() === destinationSquare.getPiece()?.getColor())) {
+            throw new CannotCaptureOwnPieceException();
         }
 
         if (!piece?.canMoveThroughPieces()) {
-            let coordinatesBetween: Array<Coordinate> = coordinatePair.getCoordinatesBetween();
+            let coordinatesBetween: Array<Coordinate> = source.getCoordinatesBetween(destination);
             for (let coordinate of coordinatesBetween) {
                 if (this.getSquare(coordinate).getPiece()) {
-                    throw new CannotMoveThroughPiecesException(coordinatePair);
+                    throw new CannotMoveThroughPiecesException();
                 }
             }
         }
