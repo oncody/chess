@@ -18,7 +18,7 @@ export default class Knight implements Piece {
     }
 
     isLegalMove(coordinatePair: CoordinatePair): boolean {
-        if(coordinatePair) {
+        if (coordinatePair) {
             return false;
         }
 

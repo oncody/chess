@@ -9,6 +9,7 @@ import NeedToMoveToADifferentSquareException from '../../src/board/Exceptions/Ne
 import NoPieceToMoveException from '../../src/board/Exceptions/NoPieceToMoveException';
 import Knight from '../../src/piece/Knight';
 import CannotMoveOpponentsPieceException from '../../src/board/Exceptions/CannotMoveOpponentsPieceException';
+import CannotCaptureOwnPieceException from '../../src/board/Exceptions/CannotCaptureOwnPieceException';
 
 test('Moving to same square throws an exception', () => {
     let board = new Board();
@@ -46,5 +47,21 @@ test('Cannot move opponent\'s piece', () => {
     expect(() => {
         board.movePiece(player, coordinatePair)
     }).toThrowError(CannotMoveOpponentsPieceException);
+});
+
+test('Cannot capture your own piece', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let firstSquare = new Coordinate(Column.A, Row.ROW_1);
+    let secondSquare = new Coordinate(Column.A, Row.ROW_2);
+    let coordinatePair = new CoordinatePair(firstSquare, secondSquare);
+    let firstWhiteKnight = new Knight(Color.White);
+    let secondWhiteKnight = new Knight(Color.White);
+    board.getSquare(firstSquare).addPiece(firstWhiteKnight);
+    board.getSquare(secondSquare).addPiece(secondWhiteKnight);
+
+    expect(() => {
+        board.movePiece(player, coordinatePair)
+    }).toThrowError(CannotCaptureOwnPieceException);
 });
 
