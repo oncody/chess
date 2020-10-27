@@ -10,6 +10,8 @@ import NoPieceToMoveException from '../../src/board/Exceptions/NoPieceToMoveExce
 import Knight from '../../src/piece/Knight';
 import CannotMoveOpponentsPieceException from '../../src/board/Exceptions/CannotMoveOpponentsPieceException';
 import CannotCaptureOwnPieceException from '../../src/board/Exceptions/CannotCaptureOwnPieceException';
+import Rook from '../../src/piece/Rook';
+import CannotMoveThroughPiecesException from '../../src/board/Exceptions/CannotMoveThroughPiecesException';
 
 test('Moving to same square throws an exception', () => {
     let board = new Board();
@@ -63,5 +65,22 @@ test('Cannot capture your own piece', () => {
     expect(() => {
         board.movePiece(player, coordinatePair)
     }).toThrowError(CannotCaptureOwnPieceException);
+});
+
+test('Cannot move through pieces vertically', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let a1 = new Coordinate(Column.A, Row.ROW_1);
+    let a4 = new Coordinate(Column.A, Row.ROW_4);
+    let a8 = new Coordinate(Column.A, Row.ROW_8);
+    let coordinatePair = new CoordinatePair(a1, a8);
+    let firstWhiteRook = new Rook(Color.White);
+    let secondWhiteRook = new Rook(Color.White);
+    board.getSquare(a1).addPiece(firstWhiteRook);
+    board.getSquare(a4).addPiece(secondWhiteRook);
+
+    expect(() => {
+        board.movePiece(player, coordinatePair)
+    }).toThrowError(CannotMoveThroughPiecesException);
 });
 

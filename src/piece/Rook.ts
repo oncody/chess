@@ -18,6 +18,10 @@ export default class Rook implements Piece {
     }
 
     isLegalMove(coordinatePair: CoordinatePair): boolean {
+        if (coordinatePair) {
+            return false;
+        }
+
         return true;
     }
 }

@@ -9,6 +9,8 @@ import CoordinatePair from './CoordinatePair';
 import CannotMoveOpponentsPieceException from './Exceptions/CannotMoveOpponentsPieceException';
 import CannotCaptureOwnPieceException from './Exceptions/CannotCaptureOwnPieceException';
 import NeedToMoveToADifferentSquareException from './Exceptions/NeedToMoveToADifferentSquareException';
+import {Piece} from '../piece/Piece';
+import CannotMoveThroughPiecesException from './Exceptions/CannotMoveThroughPiecesException';
 
 class Board {
     /**
@@ -44,24 +46,33 @@ class Board {
     }
 
     movePiece(player: Player, coordinatePair: CoordinatePair): void {
-        let startSquare = this.getSquare(coordinatePair.getFirstCoordinate());
-        let endSquare = this.getSquare(coordinatePair.getSecondCoordinate());
+        let startSquare: Square = this.getSquare(coordinatePair.getFirstCoordinate());
+        let endSquare: Square = this.getSquare(coordinatePair.getSecondCoordinate());
 
-        if(coordinatePair.areEqual()) {
+        if (coordinatePair.areEqual()) {
             throw new NeedToMoveToADifferentSquareException(coordinatePair);
         }
 
-        if(!startSquare.getPiece()) {
+        if (!startSquare.getPiece()) {
             throw new NoPieceToMoveException(coordinatePair);
         }
 
-        let piece = startSquare.getPiece();
-        if(player.getColor() !== piece?.getColor()) {
+        let piece: Piece | undefined = startSquare.getPiece();
+        if (player.getColor() !== piece?.getColor()) {
             throw new CannotMoveOpponentsPieceException(coordinatePair);
         }
 
-        if(endSquare.getPiece() && (player.getColor() === endSquare.getPiece()?.getColor())) {
+        if (endSquare.getPiece() && (player.getColor() === endSquare.getPiece()?.getColor())) {
             throw new CannotCaptureOwnPieceException(coordinatePair);
+        }
+
+        if (!piece?.canMoveThroughPieces()) {
+            let coordinatesBetween: Array<Coordinate> = coordinatePair.getCoordinatesBetween();
+            for (let coordinate of coordinatesBetween) {
+                if (this.getSquare(coordinate).getPiece()) {
+                    throw new CannotMoveThroughPiecesException(coordinatePair);
+                }
+            }
         }
     }
 

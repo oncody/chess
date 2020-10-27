@@ -81,17 +81,17 @@ export default class CoordinatePair {
         let currentColumn: Column = this.firstCoordinate.getColumn();
         let currentRow: Row = this.firstCoordinate.getRow();
 
-        while ((currentColumn !== secondColumn) && (currentRow !== secondRow)) {
+        while ((currentColumn !== secondColumn) || (currentRow !== secondRow)) {
             if(firstColumn > secondColumn) {
-                currentColumn = Column[Column[currentColumn + 1] as keyof typeof Column];
-            } else if(firstColumn < secondColumn) {
                 currentColumn = Column[Column[currentColumn - 1] as keyof typeof Column];
+            } else if(firstColumn < secondColumn) {
+                currentColumn = Column[Column[currentColumn + 1] as keyof typeof Column];
             }
 
             if(firstRow > secondRow) {
-                currentRow = Row[Row[currentRow + 1] as keyof typeof Row];
-            } else if(firstRow < secondRow) {
                 currentRow = Row[Row[currentRow - 1] as keyof typeof Row];
+            } else if(firstRow < secondRow) {
+                currentRow = Row[Row[currentRow + 1] as keyof typeof Row];
             }
 
             coordinatesBetween.push(new Coordinate(currentColumn, currentRow));
