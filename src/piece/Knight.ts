@@ -2,7 +2,7 @@ import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import CoordinatePair from "../board/CoordinatePair";
 
-class Knight implements Piece {
+export default class Knight implements Piece {
     color: Color;
 
     constructor(color: Color) {
@@ -18,6 +18,10 @@ class Knight implements Piece {
     }
 
     isLegalMove(coordinatePair: CoordinatePair): boolean {
+        if(coordinatePair) {
+            return false;
+        }
+
         return true;
     }
 }

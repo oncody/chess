@@ -7,6 +7,8 @@ import {Column} from '../../src/board/Column';
 import {Row} from '../../src/board/Row';
 import NeedToMoveToADifferentSquareException from '../../src/board/Exceptions/NeedToMoveToADifferentSquareException';
 import NoPieceToMoveException from '../../src/board/Exceptions/NoPieceToMoveException';
+import Knight from '../../src/piece/Knight';
+import CannotMoveOpponentsPieceException from '../../src/board/Exceptions/CannotMoveOpponentsPieceException';
 
 test('Moving to same square throws an exception', () => {
     let board = new Board();
@@ -31,3 +33,18 @@ test('Cannot move a square without a piece', () => {
         board.movePiece(player, coordinatePair)
     }).toThrowError(NoPieceToMoveException);
 });
+
+test('Cannot move opponent\'s piece', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let first = new Coordinate(Column.A, Row.ROW_1);
+    let second = new Coordinate(Column.A, Row.ROW_2);
+    let coordinatePair = new CoordinatePair(first, second);
+    let blackKnight = new Knight(Color.Black);
+    board.getSquare(first).addPiece(blackKnight);
+
+    expect(() => {
+        board.movePiece(player, coordinatePair)
+    }).toThrowError(CannotMoveOpponentsPieceException);
+});
+

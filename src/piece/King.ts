@@ -2,7 +2,7 @@ import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import CoordinatePair from '../board/CoordinatePair';
 
-class King implements Piece {
+export default class King implements Piece {
     color: Color;
 
     constructor(color: Color) {

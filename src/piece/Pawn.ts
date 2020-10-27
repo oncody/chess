@@ -2,7 +2,7 @@ import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import CoordinatePair from '../board/CoordinatePair';
 
-class Pawn implements Piece {
+export default class Pawn implements Piece {
     color: Color;
 
     constructor(color: Color) {
