@@ -107,3 +107,18 @@ test('Cannot move through pieces horizontally right', () => {
         board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveThroughPiecesException);
 });
+
+test('Cannot move through pieces horizontally left', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.H, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_1);
+    let d1 = new Coordinate(Column.D, Row.ROW_1);
+    let whiteRook = new Rook(Color.White);
+    board.getSquare(source).addPiece(whiteRook);
+    board.getSquare(d1).addPiece(whiteRook);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
