@@ -25,6 +25,14 @@ export default class CoordinatePair {
         return this.distanceBetweenRows() + this.distanceBetweenColumns();
     }
 
+    getFirstCoordinate(): Coordinate {
+        return this.firstCoordinate;
+    }
+
+    getSecondCoordinate(): Coordinate {
+        return this.secondCoordinate;
+    }
+
     isKnightMoveAway(): boolean {
         // Both the column and the row need to be less than 3 distance away
         // The row distance + column distance need to equal 3

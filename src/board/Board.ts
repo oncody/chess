@@ -3,6 +3,12 @@ import {columns} from './Column';
 import Coordinate from './Coordinate';
 import {rows} from './Row';
 import {Color} from "../Color";
+import Player from "../Player";
+import NoPieceToMoveException from './Exceptions/NoPieceToMoveException';
+import CoordinatePair from './CoordinatePair';
+import CannotMoveOpponentsPieceException from './Exceptions/CannotMoveOpponentsPieceException';
+import CannotCaptureOwnPieceException from './Exceptions/CannotCaptureOwnPieceException';
+import NeedToMoveToADifferentSquareException from './Exceptions/NeedToMoveToADifferentSquareException';
 
 class Board {
     /**
@@ -35,6 +41,28 @@ class Board {
         // Columns and Rows range from 1 to 8
         // When we access them from the array we need to access them from 0 to 7
         return this.squares[coordinate.getColumn() - 1][coordinate.getRow() - 1];
+    }
+
+    movePiece(player: Player, coordinatePair: CoordinatePair): void {
+        let startSquare = this.getSquare(coordinatePair.getFirstCoordinate());
+        let endSquare = this.getSquare(coordinatePair.getSecondCoordinate());
+
+        if(coordinatePair.areEqual()) {
+            throw new NeedToMoveToADifferentSquareException(coordinatePair);
+        }
+
+        if(!startSquare.getPiece()) {
+            throw new NoPieceToMoveException(coordinatePair);
+        }
+
+        let piece = startSquare.getPiece();
+        if(player.getColor() !== piece?.getColor()) {
+            throw new CannotMoveOpponentsPieceException(coordinatePair);
+        }
+
+        if(endSquare.getPiece() && (player.getColor() === endSquare.getPiece()?.getColor())) {
+            throw new CannotCaptureOwnPieceException(coordinatePair);
+        }
     }
 
     print() {

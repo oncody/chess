@@ -10,4 +10,8 @@ export default class Player {
     constructor(color: Color) {
         this.color = color;
     }
+
+    getColor(): Color {
+        return this.color;
+    }
 }
