@@ -138,3 +138,18 @@ test('Cannot move through pieces diagnolly up and right', () => {
         board.movePiece(player, source, destination)
     }).toThrowError(CannotMoveThroughPiecesException);
 });
+
+test('Cannot move through pieces diagnolly down and left', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.H, Row.ROW_8);
+    let destination = new Coordinate(Column.A, Row.ROW_1);
+    let b2 = new Coordinate(Column.B, Row.ROW_2);
+    let whiteBishop = new Bishop(Color.White);
+    board.getSquare(source).addPiece(whiteBishop);
+    board.getSquare(b2).addPiece(whiteBishop);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
