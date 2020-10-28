@@ -63,10 +63,6 @@ class Board {
             throw new NeedToMoveToADifferentSquareException();
         }
 
-        if (destinationSquare.getPiece() && (player.getColor() === destinationSquare.getPiece()?.getColor())) {
-            throw new CannotCaptureOwnPieceException();
-        }
-
         if (!piece?.canMoveThroughPieces()) {
             let coordinatesBetween: Array<Coordinate> = source.getCoordinatesBetween(destination);
             for (let coordinate of coordinatesBetween) {
@@ -76,9 +72,27 @@ class Board {
             }
         }
 
-        if (!piece?.isLegalCaptureAndMove(player, source, destination)) {
-            throw new IllegalPieceMoveException();
+        let pieceOnDestination = destinationSquare.getPiece();
+        if (pieceOnDestination && (player.getColor() === pieceOnDestination?.getColor())) {
+            throw new CannotCaptureOwnPieceException();
         }
+
+        if (pieceOnDestination) {
+            // todo: test this
+            if (!piece?.isLegalCaptureAndMove(player, source, destination)) {
+                throw new IllegalPieceMoveException();
+            }
+        } else {
+            // todo: test this
+            if (!piece?.isLegalMoveWithoutCapturing(player, source, destination)) {
+                throw new IllegalPieceMoveException();
+            }
+        }
+
+        // Move the piece
+        // todo: test this
+        sourceSquare.removePiece();
+        destinationSquare.addPiece(piece);
     }
 
     print() {
