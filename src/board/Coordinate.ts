@@ -1,5 +1,7 @@
 import {Column} from './Column';
 import {Row} from './Row';
+import Player from '../Player';
+import {Color} from '../Color';
 
 const _ = require('lodash');
 
@@ -47,6 +49,14 @@ export default class Coordinate {
         let sameColumn = this.getColumn() === coordinate.getColumn();
         let sameRow = this.getRow() === coordinate.getRow();
         return sameColumn || sameRow;
+    }
+
+    isMovingForward(player: Player, coordinate: Coordinate) {
+        if (player.getColor() === Color.White) {
+            return this.getRow() < coordinate.getRow();
+        }
+
+        return this.getRow() > coordinate.getRow();
     }
 
     isDiagnol(coordinate: Coordinate): boolean {

@@ -32,20 +32,16 @@ export default class Pawn implements Piece {
             return false;
         }
 
-        if (player.getColor() === Color.White) {
-            if (source.getRow() > destination.getRow()) {
-                return false;
-            }
+        if (!source.isMovingForward(player, destination)) {
+            return false;
+        }
 
+        if (player.getColor() === Color.White) {
             if((source.getRow() === Row.ROW_2) &&
               (source.rowsBetween(destination) === 2)) {
                 return true;
             }
         } else {
-            if (source.getRow() < destination.getRow()) {
-                return false;
-            }
-
             if((source.getRow() === Row.ROW_7) &&
               (source.rowsBetween(destination) === 2)) {
                 return true;
