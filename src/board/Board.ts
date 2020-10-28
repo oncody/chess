@@ -45,7 +45,6 @@ class Board {
         return this.squares[coordinate.getColumn() - 1][coordinate.getRow() - 1];
     }
 
-    // todo: check if you would be in check at the end of the turn
     movePiece(player: Player, source: Coordinate, destination: Coordinate): void {
         let sourceSquare: Square = this.getSquare(source);
         let destinationSquare: Square = this.getSquare(destination);
@@ -93,6 +92,10 @@ class Board {
         // todo: test this
         sourceSquare.removePiece();
         destinationSquare.addPiece(piece);
+
+        // todo: check if you would be in check at the end of the turn
+        // if so undo this and say illegal move
+
     }
 
     print() {
