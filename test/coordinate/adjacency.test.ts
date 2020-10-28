@@ -11,8 +11,7 @@ test('corner should have 3 adjacent squares', () => {
     new Coordinate(Column.B, Row.ROW_2)
   ];
 
-  let squaresNonadjacent = 0;
-
+  let squaresNonAdjacent = 0;
   let matchedAdjacentSquares = [];
 
   for (let coordinate of coordinates()) {
@@ -28,17 +27,17 @@ test('corner should have 3 adjacent squares', () => {
     } else {
       expect(corner.isAdjacent(coordinate)).toBe(false);
       expect(coordinate.isAdjacent(corner)).toBe(false);
-      squaresNonadjacent++;
+      squaresNonAdjacent++;
     }
   }
 
   expect(unmatchedAdjacentSquares.length).toBe(0);
-  expect(matchedAdjacentSquares.length + squaresNonadjacent).toBe(64);
+  expect(matchedAdjacentSquares.length + squaresNonAdjacent).toBe(64);
 });
 
 test('edge should have 5 adjacent squares', () => {
   let edge = new Coordinate(Column.C, Row.ROW_1);
-  let adjacentSquares = [
+  let unmatchedAdjacentSquares = [
     new Coordinate(Column.B, Row.ROW_1),
     new Coordinate(Column.B, Row.ROW_2),
     new Coordinate(Column.C, Row.ROW_2),
@@ -46,15 +45,28 @@ test('edge should have 5 adjacent squares', () => {
     new Coordinate(Column.D, Row.ROW_2),
   ];
 
+  let squaresNonAdjacent = 0;
+  let matchedAdjacentSquares = [];
+
   for (let coordinate of coordinates()) {
-    if (adjacentSquares.some(adjacentSquare => adjacentSquare.areEqual(coordinate))) {
+    let filtered = unmatchedAdjacentSquares.filter(adjacentSquare => adjacentSquare.areEqual(coordinate));
+    let item = filtered.length > 0 ? filtered.pop() : null;
+
+    if (item) {
+      let adjacentSquareIndex = unmatchedAdjacentSquares.indexOf(item);
+      unmatchedAdjacentSquares.splice(adjacentSquareIndex, 1);
+      matchedAdjacentSquares.push(item);
       expect(edge.isAdjacent(coordinate)).toBe(true);
       expect(coordinate.isAdjacent(edge)).toBe(true);
     } else {
       expect(edge.isAdjacent(coordinate)).toBe(false);
       expect(coordinate.isAdjacent(edge)).toBe(false);
+      squaresNonAdjacent++;
     }
   }
+
+  expect(unmatchedAdjacentSquares.length).toBe(0);
+  expect(matchedAdjacentSquares.length + squaresNonAdjacent).toBe(64);
 });
 
 test('center square should have 8 adjacent squares', () => {
