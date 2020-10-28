@@ -5,21 +5,35 @@ import {coordinates} from '../../src/board/CoordinateIterator';
 
 test('corner should have 3 adjacent squares', () => {
   let corner = new Coordinate(Column.A, Row.ROW_1);
-  let adjacentSquares = [
+  let unmatchedAdjacentSquares = [
     new Coordinate(Column.A, Row.ROW_2),
     new Coordinate(Column.B, Row.ROW_1),
     new Coordinate(Column.B, Row.ROW_2)
   ];
 
+  let squaresNonadjacent = 0;
+
+  let matchedAdjacentSquares = [];
+
   for (let coordinate of coordinates()) {
-    if (adjacentSquares.some(adjacentSquare => adjacentSquare.areEqual(coordinate))) {
+    let filtered = unmatchedAdjacentSquares.filter(adjacentSquare => adjacentSquare.areEqual(coordinate));
+    let item = filtered.length > 0 ? filtered.pop() : null;
+
+    if (item) {
+      let adjacentSquareIndex = unmatchedAdjacentSquares.indexOf(item);
+      unmatchedAdjacentSquares.splice(adjacentSquareIndex, 1);
+      matchedAdjacentSquares.push(item);
       expect(corner.isAdjacent(coordinate)).toBe(true);
       expect(coordinate.isAdjacent(corner)).toBe(true);
     } else {
       expect(corner.isAdjacent(coordinate)).toBe(false);
       expect(coordinate.isAdjacent(corner)).toBe(false);
+      squaresNonadjacent++;
     }
   }
+
+  expect(unmatchedAdjacentSquares.length).toBe(0);
+  expect(matchedAdjacentSquares.length + squaresNonadjacent).toBe(64);
 });
 
 test('edge should have 5 adjacent squares', () => {
