@@ -71,7 +71,7 @@ test('edge should have 5 adjacent squares', () => {
 
 test('center square should have 8 adjacent squares', () => {
   let centerSquare = new Coordinate(Column.D, Row.ROW_4);
-  let adjacentSquares = [
+  let unmatchedAdjacentSquares = [
     new Coordinate(Column.C, Row.ROW_3),
     new Coordinate(Column.C, Row.ROW_4),
     new Coordinate(Column.C, Row.ROW_5),
@@ -82,14 +82,27 @@ test('center square should have 8 adjacent squares', () => {
     new Coordinate(Column.E, Row.ROW_5),
   ];
 
+  let squaresNonAdjacent = 0;
+  let matchedAdjacentSquares = [];
+
   for (let coordinate of coordinates()) {
-    if (adjacentSquares.some(adjacentSquare => adjacentSquare.areEqual(coordinate))) {
+    let filtered = unmatchedAdjacentSquares.filter(adjacentSquare => adjacentSquare.areEqual(coordinate));
+    let item = filtered.length > 0 ? filtered.pop() : null;
+
+    if (item) {
+      let adjacentSquareIndex = unmatchedAdjacentSquares.indexOf(item);
+      unmatchedAdjacentSquares.splice(adjacentSquareIndex, 1);
+      matchedAdjacentSquares.push(item);
       expect(centerSquare.isAdjacent(coordinate)).toBe(true);
       expect(coordinate.isAdjacent(centerSquare)).toBe(true);
     } else {
       expect(centerSquare.isAdjacent(coordinate)).toBe(false);
       expect(coordinate.isAdjacent(centerSquare)).toBe(false);
+      squaresNonAdjacent++;
     }
   }
+
+  expect(unmatchedAdjacentSquares.length).toBe(0);
+  expect(matchedAdjacentSquares.length + squaresNonAdjacent).toBe(64);
 });
 
