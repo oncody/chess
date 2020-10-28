@@ -77,13 +77,13 @@ class Board {
         }
 
         if (pieceOnDestination) {
-            // todo: test this
-            if (!piece?.isLegalCaptureAndMove(player, source, destination)) {
+            // todo: test this. testing a pawn move will test this
+            if (!piece?.isLegalCaptureAndMove(source, destination)) {
                 throw new IllegalPieceMoveException();
             }
         } else {
-            // todo: test this
-            if (!piece?.isLegalMoveWithoutCapturing(player, source, destination)) {
+            // todo: test this. testing a pawn move will test this
+            if (!piece?.isLegalMoveWithoutCapturing(source, destination)) {
                 throw new IllegalPieceMoveException();
             }
         }

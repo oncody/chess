@@ -1,7 +1,6 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import Coordinate from '../board/Coordinate';
-import Player from '../Player';
 
 export default class King implements Piece {
     color: Color;
@@ -19,12 +18,12 @@ export default class King implements Piece {
     }
 
     // todo: take castling into consideration
-    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         return source.isAdjacent(destination);
     }
 
-    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
-        return this.isLegalCaptureAndMove(player, source, destination);
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 

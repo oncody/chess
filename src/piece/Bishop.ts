@@ -18,12 +18,12 @@ export default class Bishop implements Piece {
         return false;
     }
 
-    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         return source.isDiagnol(destination);
     }
 
-    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
-        return this.isLegalCaptureAndMove(player, source, destination);
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 

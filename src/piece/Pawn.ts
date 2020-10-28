@@ -1,6 +1,5 @@
 import type {Piece} from './Piece';
 import Coordinate from '../board/Coordinate';
-import Player from '../Player';
 import {Row} from '../board/Row';
 import {Color} from '../Color';
 
@@ -22,12 +21,12 @@ export default class Pawn implements Piece {
     // todo: test this
     // todo: en passant
     // todo: pawn promotion to a queen
-    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         if (source.columnsBetween(destination) !== 1) {
             return false;
         }
 
-        if (!source.isMovingForward(player, destination)) {
+        if (!source.isMovingForward(this.color, destination)) {
             return false;
         }
 
@@ -36,16 +35,16 @@ export default class Pawn implements Piece {
 
     // todo: test this
     // todo: pawn promotion to a queen
-    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
         if (source.columnsBetween(destination) > 0) {
             return false;
         }
 
-        if (!source.isMovingForward(player, destination)) {
+        if (!source.isMovingForward(this.color, destination)) {
             return false;
         }
 
-        if (player.getColor() === Color.White) {
+        if (this.color === Color.White) {
             if((source.getRow() === Row.ROW_2) &&
               (source.rowsBetween(destination) === 2)) {
                 return true;

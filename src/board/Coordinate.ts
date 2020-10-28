@@ -51,8 +51,8 @@ export default class Coordinate {
         return sameColumn || sameRow;
     }
 
-    isMovingForward(player: Player, coordinate: Coordinate) {
-        if (player.getColor() === Color.White) {
+    isMovingForward(color: Color, coordinate: Coordinate) {
+        if (color === Color.White) {
             return this.getRow() < coordinate.getRow();
         }
 

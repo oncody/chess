@@ -1,7 +1,6 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import Coordinate from '../board/Coordinate';
-import Player from '../Player';
 
 export default class Knight implements Piece {
     color: Color;
@@ -18,7 +17,7 @@ export default class Knight implements Piece {
         return true;
     }
 
-    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         // Both the column and the row need to be less than 3 distance away
         // The row distance + column distance need to equal 3
         if (source.columnsBetween(destination) > 2) {
@@ -32,8 +31,8 @@ export default class Knight implements Piece {
         return source.orthognalDistanceBetween(destination) === 3;
     }
 
-    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
-        return this.isLegalCaptureAndMove(player, source, destination);
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 
