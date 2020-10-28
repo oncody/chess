@@ -19,14 +19,23 @@ export default class Pawn implements Piece {
         return false;
     }
 
-    // todo: they can capture diagnolly but othewrwise not move diagnolly
+    // todo: test this
     // todo: en passant
     // todo: pawn promotion to a queen
     isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
-        return source !== null && destination != null;
+        if (source.columnsBetween(destination) !== 1) {
+            return false;
+        }
+
+        if (!source.isMovingForward(player, destination)) {
+            return false;
+        }
+
+        return source.rowsBetween(destination) === 1;
     }
 
     // todo: test this
+    // todo: pawn promotion to a queen
     isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
         if (source.columnsBetween(destination) > 0) {
             return false;
