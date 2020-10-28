@@ -1,6 +1,7 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import Coordinate from '../board/Coordinate';
+import Player from '../Player';
 
 export default class Rook implements Piece {
     color: Color;
@@ -17,12 +18,12 @@ export default class Rook implements Piece {
         return false;
     }
 
-    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
         return source.isOrthogonal(destination);
     }
 
-    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
-        return this.isLegalCaptureAndMove(source, destination);
+    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(player, source, destination);
     }
 }
 

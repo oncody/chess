@@ -76,7 +76,7 @@ class Board {
             }
         }
 
-        if (!piece?.isLegalCaptureAndMove(source, destination)) {
+        if (!piece?.isLegalCaptureAndMove(player, source, destination)) {
             throw new IllegalPieceMoveException();
         }
     }

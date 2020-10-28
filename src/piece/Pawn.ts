@@ -1,6 +1,7 @@
 import type {Piece} from './Piece';
 import type {Color} from '../Color';
 import Coordinate from '../board/Coordinate';
+import Player from '../Player';
 
 export default class Pawn implements Piece {
     color: Color;
@@ -20,11 +21,11 @@ export default class Pawn implements Piece {
     // todo: pawns cannot capture forward
     // todo: they can capture diagnolly but othewrwise not move diagnolly
     // todo: en passant
-    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(player: Player, source: Coordinate, destination: Coordinate): boolean {
         return source !== null && destination != null;
     }
 
-    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+    isLegalMoveWithoutCapturing(player: Player, source: Coordinate, destination: Coordinate): boolean {
         return source !== null && destination != null;
     }
 }
