@@ -64,7 +64,7 @@ test('Cannot capture your own piece', () => {
     }).toThrowError(CannotCaptureOwnPieceException);
 });
 
-test('Cannot move through pieces vertically up', () => {
+test('Cannot move through pieces above', () => {
     let board = new Board();
     let player = new Player(Color.White);
     let source = new Coordinate(Column.A, Row.ROW_1);
@@ -80,7 +80,7 @@ test('Cannot move through pieces vertically up', () => {
     }).toThrowError(CannotMoveThroughPiecesException);
 });
 
-test('Cannot move through pieces vertically down', () => {
+test('Cannot move through pieces below', () => {
     let board = new Board();
     let player = new Player(Color.White);
     let source = new Coordinate(Column.A, Row.ROW_8);
@@ -96,7 +96,7 @@ test('Cannot move through pieces vertically down', () => {
     }).toThrowError(CannotMoveThroughPiecesException);
 });
 
-test('Cannot move through pieces horizontally right', () => {
+test('Cannot move through pieces to the right', () => {
     let board = new Board();
     let player = new Player(Color.White);
     let source = new Coordinate(Column.A, Row.ROW_1);
@@ -111,7 +111,7 @@ test('Cannot move through pieces horizontally right', () => {
     }).toThrowError(CannotMoveThroughPiecesException);
 });
 
-test('Cannot move through pieces horizontally left', () => {
+test('Cannot move through pieces to the left', () => {
     let board = new Board();
     let player = new Player(Color.White);
     let source = new Coordinate(Column.H, Row.ROW_1);
@@ -150,6 +150,36 @@ test('Cannot move through pieces diagnolly down and left', () => {
     let whiteBishop = new Bishop(Color.White);
     board.getSquare(source).addPiece(whiteBishop);
     board.getSquare(b2).addPiece(whiteBishop);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
+
+test('Cannot move through pieces diagnolly up and left', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.H, Row.ROW_1);
+    let destination = new Coordinate(Column.A, Row.ROW_8);
+    let b7 = new Coordinate(Column.B, Row.ROW_7);
+    let whiteBishop = new Bishop(Color.White);
+    board.getSquare(source).addPiece(whiteBishop);
+    board.getSquare(b7).addPiece(whiteBishop);
+
+    expect(() => {
+        board.movePiece(player, source, destination)
+    }).toThrowError(CannotMoveThroughPiecesException);
+});
+
+test('Cannot move through pieces diagnolly down and right', () => {
+    let board = new Board();
+    let player = new Player(Color.White);
+    let source = new Coordinate(Column.A, Row.ROW_8);
+    let destination = new Coordinate(Column.H, Row.ROW_1);
+    let b7 = new Coordinate(Column.B, Row.ROW_7);
+    let whiteBishop = new Bishop(Color.White);
+    board.getSquare(source).addPiece(whiteBishop);
+    board.getSquare(b7).addPiece(whiteBishop);
 
     expect(() => {
         board.movePiece(player, source, destination)
