@@ -17,8 +17,12 @@ export default class Rook implements Piece {
         return false;
     }
 
-    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         return source.isOrthogonal(destination);
+    }
+
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 

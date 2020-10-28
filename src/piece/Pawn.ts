@@ -17,11 +17,15 @@ export default class Pawn implements Piece {
         return false;
     }
 
-    // pawns cannot capture forward
-    // they can capture diagnolly but othewrwise not move diagnolly
-    // en passant
-    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
-        return true;
+    // todo: pawns cannot capture forward
+    // todo: they can capture diagnolly but othewrwise not move diagnolly
+    // todo: en passant
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
+        return source !== null && destination != null;
+    }
+
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return source !== null && destination != null;
     }
 }
 

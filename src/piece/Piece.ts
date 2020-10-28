@@ -4,5 +4,6 @@ import Coordinate from '../board/Coordinate';
 export interface Piece {
     getColor(): Color;
     canMoveThroughPieces(): boolean;
-    isLegalMove(source: Coordinate, destination: Coordinate): boolean;
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean;
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean;
 }

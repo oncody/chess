@@ -18,8 +18,12 @@ export default class King implements Piece {
     }
 
     // todo: take castling into consideration
-    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         return source.isAdjacent(destination);
+    }
+
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 

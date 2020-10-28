@@ -18,8 +18,12 @@ export default class Queen implements Piece {
         return false;
     }
 
-    isLegalMove(source: Coordinate, destination: Coordinate): boolean {
+    isLegalCaptureAndMove(source: Coordinate, destination: Coordinate): boolean {
         return source.isDiagnol(destination) || source.isOrthogonal(destination);
+    }
+
+    isLegalMoveWithoutCapturing(source: Coordinate, destination: Coordinate): boolean {
+        return this.isLegalCaptureAndMove(source, destination);
     }
 }
 
